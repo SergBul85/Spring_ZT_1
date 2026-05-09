@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
-@Component
 public class Dog implements Pet {
 
     private String name;
