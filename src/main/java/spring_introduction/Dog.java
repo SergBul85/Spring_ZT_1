@@ -10,7 +10,7 @@ import javax.annotation.PreDestroy;
 
 @Getter
 @Setter
-@Component
+//@Component
 @Scope("prototype")
 public class Dog implements Pet {
 
