@@ -1,0 +1,14 @@
+package spring_introduction;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test6 {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MyConfiig.class);
+
+        Person person = context.getBean("personBean", Person.class);
+
+        context.close();
+    }
+}
