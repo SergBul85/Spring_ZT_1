@@ -2,9 +2,11 @@ package spring_introduction;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
+@Component
 public class Dog implements Pet {
 
     private String name;
