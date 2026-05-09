@@ -9,9 +9,12 @@ public class Test6 {
 
         Person person = context.getBean("personBean", Person.class);
 
-        Pet cat1 = context.getBean("catBean", Pet.class);
-        Pet cat2 = context.getBean("catBean", Pet.class);
-        System.out.println(cat1 == cat2);
+        System.out.println(person.getSurname());
+        System.out.println(person.getAge());
+
+//        Pet cat1 = context.getBean("catBean", Pet.class);
+//        Pet cat2 = context.getBean("catBean", Pet.class);
+//        System.out.println(cat1 == cat2);
 
         context.close();
     }
