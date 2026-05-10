@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost:3306/test_db</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/my_db</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="connection.username">jpauser</property>
         <property name="connection.password">jpapwd</property>
@@ -13,6 +13,8 @@
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
         <property name="hibernate.format_sql"> true </property>
+        <!-- КЛЮЧЕВОЙ ПАРАМЕТР: логировать значения параметров -->
+        <property name="hibernate.use_sql_comments">true</property>
 
     </session-factory>
 </hibernate-configuration>
