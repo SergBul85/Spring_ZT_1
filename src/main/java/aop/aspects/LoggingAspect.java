@@ -1,7 +1,10 @@
 package aop.aspects;
 
+import aop.Book;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -55,9 +58,36 @@ public class LoggingAspect {
 //    }
 
 
-    @Before("aop.aspects.MyPointCuts.allGetMethods()")
-    public void beforeGetLoggingAdvice() {
+    @Before("aop.aspects.MyPointCuts.allAddMethods()")
+    public void beforeAddLoggingAdvice(JoinPoint joinPoint) {
+
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        System.out.println("\tmethodSignature - " + methodSignature);
+        System.out.println("\tmethodSignature.getMethod() - " + methodSignature.getMethod());
+        System.out.println("\tmethodSignature.getReturnType() - " + methodSignature.getReturnType());
+        System.out.println("\tmethodSignature.getName() - " + methodSignature.getName());
+        System.out.println("\tmethodSignature.getModifiers() - " + methodSignature.getModifiers());
+
+        if (methodSignature.getName().equals("addBook")) {
+            Object[] argumentss = joinPoint.getArgs();
+            for (Object obj : argumentss) {
+                if (obj instanceof Book) {
+                    Book myBook = (Book) obj;
+                    System.out.println("\t\tИнформация о книге:");
+                    System.out.println("\t\t" + myBook.getName());
+                    System.out.println("\t\t" + myBook.getAuthor());
+                    System.out.println("\t\t" + myBook.getYearOfPublication());
+                    System.out.println("\t\t----------------------------------");
+                } else if (obj instanceof String) {
+                    System.out.println("\t\tКнигу добавил:");
+                    System.out.println("\t\t" + obj.toString());
+                    System.out.println("\t\t----------------------------------");
+                }
+            }
+        }
+
         System.out.println("\tbeforeGetLoggingAdvice: логирование попытки получить книгу/журнал.");
+        System.out.println("\t------------------------------------------------------------------------------------");
     }
 
 
