@@ -4,8 +4,11 @@ import hibernate_test.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
-public class Test1 {
+import java.util.List;
+
+public class Test3 {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -13,14 +16,18 @@ public class Test1 {
                 .buildSessionFactory();
         try {
             Session session = factory.getCurrentSession();
-            Employee employee = new Employee("Aleksandr", "Ivanov", "IT", 600);
-
             session.beginTransaction();
-            session.save(employee);
+
+//            Query query = session.createQuery("from Employee");
+
+            Query query = session.createQuery("from Employee where salary > :salary");
+            query.setParameter("salary", "650");
+
+            List<Employee> employees = query.getResultList();
+            employees.forEach(System.out::println);
 
             session.getTransaction().commit();
             System.out.println("Done!");
-            System.out.println(employee);
         } finally {
             factory.close();
         }
