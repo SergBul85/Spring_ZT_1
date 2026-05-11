@@ -4,6 +4,7 @@ import hibernate_test.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 public class Test5 {
     public static void main(String[] args) {
@@ -21,6 +22,11 @@ public class Test5 {
 //            Query query = session.createQuery("delete Employee  where  id= :id ");
 //            query.setParameter("id", 12);
 //            query.executeUpdate();
+
+//            Query query = session.createQuery("delete Employee e where e.salary < :salary ");
+//            query.setParameter("salary", 751);
+//            int i = query.executeUpdate();
+//            System.out.println(i);
 
             session.getTransaction().commit();
         } finally {
