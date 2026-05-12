@@ -45,10 +45,13 @@ public class Test {
 //                System.out.println(c);
 //            });
 
-            Child child = session.get(Child.class, 4);
-            System.out.println(child);
-            child.getSections().forEach(System.out::println);
+//            Child child = session.get(Child.class, 4);
+//            System.out.println(child);
+//            child.getSections().forEach(System.out::println);
 
+
+            Section section = session.get(Section.class, 6);
+            session.remove(section);
 
             session.getTransaction().commit();
 
