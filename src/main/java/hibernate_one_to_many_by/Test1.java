@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class Test1 {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
@@ -18,23 +20,26 @@ public class Test1 {
             session = factory.getCurrentSession();
             session.beginTransaction();
 
-//            Department department = new Department("IT", 300, 1200);
-//            Employee employee1 = new Employee("Zaur", "Tregulov", 800);
-//            Employee employee2 = new Employee("Elena", "Smirnova", 100);
+//            Department department = new Department("SALES", 800, 1200);
+//            Employee employee1 = new Employee("Zaur", "Tregulov", 801);
+//            Employee employee2 = new Employee("Elena", "Smirnova", 102);
+//            Employee employee3 = new Employee("Anton", "Sidorov", 303);
 //            department.addEmployee(employee1);
 //            department.addEmployee(employee2);
+//            department.addEmployee(employee3);
 //
 //            session.persist(department);
 
-//            Department department = session.get(Department.class, 1);
-//            System.out.println(department);
-//            department.getEmps().forEach(System.out::println);
+            Department department = session.get(Department.class, 8);
+            System.out.println(department);
 
-            Employee employee = session.get(Employee.class, 4);
-            session.remove(employee);
-
+            List<Employee> emps = department.getEmps();
+            emps.get(0);
 
             session.getTransaction().commit();
+
+            emps.forEach(System.out::println);
+
             System.out.println("Done!");
         } finally {
             session.close();
